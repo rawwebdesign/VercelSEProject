@@ -13,14 +13,11 @@
 - Deploy and test ISR on Vercel
 - Edge middleware / edge function
 - isBot on API Route
-- Pull CWV
 - Stream responses for non-static pages
-- Utilize env vars
 - ISR Top 10 pages
-- Enable speed insights
-- Remove theming
+- Enable speed insights and ensure it works, Collect CWV
+- Remove theming code
 - Use Edge Config?
-- Collect CWV
 - Use Env Vars
 
 ## Optional
