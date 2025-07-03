@@ -14,7 +14,13 @@
 - Stream responses for non-static pages
 - Utilize env vars
 - ISR Top 10 pages
+- Enable speed insights
+- Remove extra files created by v0
 
 ## Optional
 - Dynamically pull popular categories?
 - Typeahead on search bar
+
+## Links
+- [Dashboard](https://vercel.com/rawwebdesigns-projects/vercel-se-project)
+- [Publicly Accessible](https://vercel-se-project.vercel.app/)

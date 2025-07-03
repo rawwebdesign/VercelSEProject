@@ -1,4 +1,4 @@
-import { type NextRequest, NextResponse } from "next/server"
+import { type NextRequest, NextResponse } from "next/server";
 
 const popularTopics = [
   "AI",
@@ -57,17 +57,19 @@ const popularTopics = [
   "UI/UX",
   "Frontend",
   "Backend",
-]
+];
 
 export async function GET(request: NextRequest) {
-  const searchParams = request.nextUrl.searchParams
-  const query = searchParams.get("q")?.toLowerCase() || ""
+  const searchParams = request.nextUrl.searchParams;
+  const query = searchParams.get("q")?.toLowerCase() || "";
 
   if (!query) {
-    return NextResponse.json([])
+    return NextResponse.json([]);
   }
 
-  const suggestions = popularTopics.filter((topic) => topic.toLowerCase().includes(query)).slice(0, 8)
+  const suggestions = popularTopics
+    .filter((topic) => topic.toLowerCase().includes(query))
+    .slice(0, 8);
 
-  return NextResponse.json(suggestions)
+  return NextResponse.json(suggestions);
 }

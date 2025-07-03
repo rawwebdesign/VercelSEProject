@@ -1,14 +1,15 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { Search, TrendingUp } from "lucide-react"
-import { Input } from "@/components/ui/input"
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { Search, TrendingUp } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
 const popularTopics = [
+  "Vercel",
   "AI",
   "React",
   "JavaScript",
@@ -24,40 +25,42 @@ const popularTopics = [
   "AWS",
   "Security",
   "Open Source",
-]
+];
 
 export default function Navigation() {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [suggestions, setSuggestions] = useState<string[]>([])
-  const [showSuggestions, setShowSuggestions] = useState(false)
-  const router = useRouter()
+  const [searchQuery, setSearchQuery] = useState("");
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const router = useRouter();
 
   const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (searchQuery.trim()) {
-      router.push(`/topic/${encodeURIComponent(searchQuery.trim())}`)
-      setSearchQuery("")
-      setShowSuggestions(false)
+      router.push(`/topic/${encodeURIComponent(searchQuery.trim())}`);
+      setSearchQuery("");
+      setShowSuggestions(false);
     }
-  }
+  };
 
   const handleInputChange = (value: string) => {
-    setSearchQuery(value)
+    setSearchQuery(value);
 
     if (value.length > 0) {
-      const filtered = popularTopics.filter((topic) => topic.toLowerCase().includes(value.toLowerCase())).slice(0, 5)
-      setSuggestions(filtered)
-      setShowSuggestions(true)
+      const filtered = popularTopics
+        .filter((topic) => topic.toLowerCase().includes(value.toLowerCase()))
+        .slice(0, 5);
+      setSuggestions(filtered);
+      setShowSuggestions(true);
     } else {
-      setShowSuggestions(false)
+      setShowSuggestions(false);
     }
-  }
+  };
 
   const selectSuggestion = (suggestion: string) => {
-    setSearchQuery(suggestion)
-    setShowSuggestions(false)
-    router.push(`/topic/${encodeURIComponent(suggestion)}`)
-  }
+    setSearchQuery(suggestion);
+    setShowSuggestions(false);
+    router.push(`/topic/${encodeURIComponent(suggestion)}`);
+  };
 
   return (
     <nav className="fixed left-0 top-0 h-full w-64 bg-white border-r border-gray-200 p-6">
@@ -119,5 +122,5 @@ export default function Navigation() {
         </div>
       </div>
     </nav>
-  )
+  );
 }

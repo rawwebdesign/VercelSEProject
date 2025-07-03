@@ -1,49 +1,51 @@
-import Link from "next/link"
-import { ExternalLink, MessageCircle, User, Clock } from "lucide-react"
+import Link from "next/link";
+import { ExternalLink, MessageCircle, User, Clock } from "lucide-react";
 
 interface Story {
-  id: number
-  title: string
-  url?: string
-  score: number
-  by: string
-  time: number
-  descendants?: number
+  id: number;
+  title: string;
+  url?: string;
+  score: number;
+  by: string;
+  time: number;
+  descendants?: number;
 }
 
 interface StoryCardProps {
-  story: Story
-  rank: number
+  story: Story;
+  rank: number;
 }
 
 function formatTimeAgo(timestamp: number): string {
-  const now = Date.now() / 1000
-  const diff = now - timestamp
+  const now = Date.now() / 1000;
+  const diff = now - timestamp;
 
   if (diff < 3600) {
-    return `${Math.floor(diff / 60)}m ago`
+    return `${Math.floor(diff / 60)}m ago`;
   } else if (diff < 86400) {
-    return `${Math.floor(diff / 3600)}h ago`
+    return `${Math.floor(diff / 3600)}h ago`;
   } else {
-    return `${Math.floor(diff / 86400)}d ago`
+    return `${Math.floor(diff / 86400)}d ago`;
   }
 }
 
 function getDomainFromUrl(url: string): string {
   try {
-    return new URL(url).hostname.replace("www.", "")
+    return new URL(url).hostname.replace("www.", "");
   } catch {
-    return ""
+    return "";
   }
 }
 
 export default function StoryCard({ story, rank }: StoryCardProps) {
-  const domain = story.url ? getDomainFromUrl(story.url) : ""
+  const domain = story.url ? getDomainFromUrl(story.url) : "";
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
       <div className="flex items-start space-x-4">
-        <div className="flex-shrink-0 text-gray-400 font-mono text-sm w-8">{rank}.</div>
+        <div className="flex-shrink-0 text-gray-400 font-mono text-sm w-8">
+          {rank}.
+        </div>
 
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between mb-2">
@@ -104,5 +106,5 @@ export default function StoryCard({ story, rank }: StoryCardProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }
