@@ -5,6 +5,7 @@
 - Vercel Build
 - Vercel Hosting
 - Vercel GitHub Integration
+- Vercel Speed Insights
 
 ## Todos
 - Eslint should run
@@ -18,6 +19,9 @@
 - ISR Top 10 pages
 - Enable speed insights
 - Remove theming
+- Use Edge Config?
+- Collect CWV
+- Use Env Vars
 
 ## Optional
 - Dynamically pull popular categories?
