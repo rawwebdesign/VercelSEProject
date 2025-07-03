@@ -2,11 +2,13 @@
  
 ## Vercel Products & Features Used
 - v0: Create a foundation for the site
+- Vercel Build
+- Vercel Hosting
+- Vercel GitHub Integration
 
 ## Todos
 - Eslint should run
-- Prettier
-- No errors during dev
+- No errors during dev and navigation
 - Deploy and test ISR on Vercel
 - Edge middleware / edge function
 - isBot on API Route
@@ -15,7 +17,7 @@
 - Utilize env vars
 - ISR Top 10 pages
 - Enable speed insights
-- Remove extra files created by v0
+- Remove theming
 
 ## Optional
 - Dynamically pull popular categories?
