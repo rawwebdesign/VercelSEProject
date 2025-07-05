@@ -12,11 +12,10 @@
 - Edge Config
 
 ## Todos
-- The pages are no longer suspense when they are not ISR
+- Fix this: The pages are no longer suspense when they are not ISR
 - Edge middleware / edge function
 - isBot on API Route
 - Remove theming code
-- Use Edge Config
 - Remove unused code
 
 ## Check before complete
