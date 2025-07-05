@@ -9,7 +9,7 @@
 
 ## Todos
 - Eslint should run
-- No errors during dev and navigation
+- Deployments are not happening on push
 - Deploy and test ISR on Vercel
 - Edge middleware / edge function
 - isBot on API Route
@@ -17,12 +17,13 @@
 - ISR Top 10 pages
 - Enable speed insights and ensure it works, Collect CWV
 - Remove theming code
-- Use Edge Config?
+- Use Edge Config
 - Use Env Vars
+- No errors during dev and navigation
 
 ## Optional
 - Dynamically pull popular categories?
-- Typeahead on search bar
+- Typeahead on the search bar
 
 ## Links
 - [Dashboard](https://vercel.com/rawwebdesigns-projects/vercel-se-project)
