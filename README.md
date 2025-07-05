@@ -15,7 +15,6 @@
 - isBot on API Route
 - Remove theming code
 - Use Edge Config
-- Use Env Vars
 - Remove unused code
 
 ## Check before complete
