@@ -10,16 +10,21 @@
 - Vercel Observability
 
 ## Todos
-- Eslint should run
+- Make the non-homepages work
 - Deploy and test ISR on Vercel
 - Edge middleware / edge function
 - isBot on API Route
-- Stream responses for non-static pages
 - ISR Top 10 pages
-- Enable speed insights and ensure it works, Collect CWV
 - Remove theming code
 - Use Edge Config
 - Use Env Vars
+- Remove unused code
+
+## Check before complete
+- No eslint errors
+- Verify ISR on Vercel
+- Stream responses for non-static pages
+- Verify speed insights and ensure it works, Collect CWV
 - No errors during dev and navigation
 
 ## Optional
