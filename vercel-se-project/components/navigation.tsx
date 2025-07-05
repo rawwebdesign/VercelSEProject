@@ -8,24 +8,7 @@ import { useRouter } from "next/navigation";
 import { Search, TrendingUp } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
-const popularTopics = [
-  "Vercel",
-  "AI",
-  "React",
-  "JavaScript",
-  "Python",
-  "Machine Learning",
-  "Startup",
-  "Crypto",
-  "Web3",
-  "TypeScript",
-  "Next.js",
-  "Docker",
-  "Kubernetes",
-  "AWS",
-  "Security",
-  "Open Source",
-];
+import { popularTopics } from "@/lib/topics";
 
 export default function Navigation() {
   const [searchQuery, setSearchQuery] = useState("");

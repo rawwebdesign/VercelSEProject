@@ -2,6 +2,15 @@ import { Suspense } from "react";
 import StoryCard from "@/components/story-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Story } from "@/lib/types";
+import { popularTopics } from "@/lib/topics";
+
+export const revalidate = 300;
+
+export async function generateStaticParams() {
+  return popularTopics.map((topic) => ({
+    slug: encodeURIComponent(topic),
+  }));
+}
 import { AlgoliaSearchResultSchema } from "@/lib/validators";
 
 async function getStoriesByTopic(topic: string): Promise<Story[]> {
@@ -63,8 +72,13 @@ async function TopicStoryList({ topic }: { topic: string }) {
   );
 }
 
-export default function TopicPage({ params }: { params: { slug: string } }) {
-  const topic = decodeURIComponent(params.slug);
+export default async function TopicPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const { slug } = await params;
+  const topic = decodeURIComponent(slug);
 
   return (
     <div className="p-8">

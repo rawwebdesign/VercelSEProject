@@ -10,7 +10,6 @@
 - Vercel Observability
 
 ## Todos
-- Make the non-homepages work
 - Deploy and test ISR on Vercel
 - Edge middleware / edge function
 - isBot on API Route
