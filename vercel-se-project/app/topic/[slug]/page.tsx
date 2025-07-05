@@ -2,35 +2,25 @@ import { Suspense } from "react";
 import StoryCard from "@/components/story-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Story } from "@/lib/types";
+import { AlgoliaSearchResultSchema } from "@/lib/validators";
 
 async function getStoriesByTopic(topic: string): Promise<Story[]> {
   try {
-    // Get top stories first
-    const topStoriesRes = await fetch(
-      "https://hacker-news.firebaseio.com/v0/topstories.json",
+    const response = await fetch(
+      `https://hn.algolia.com/api/v1/search?query=${topic}&tags=story`,
     );
-    const topStoryIds: number[] = await topStoriesRes.json();
+    const json = await response.json();
+    const parsed = AlgoliaSearchResultSchema.parse(json);
 
-    // Get first 100 stories to search through
-    const storyPromises = topStoryIds.slice(0, 100).map(async (id) => {
-      const storyRes = await fetch(
-        `https://hacker-news.firebaseio.com/v0/item/${id}.json`,
-      );
-      return storyRes.json();
-    });
-
-    const allStories = await Promise.all(storyPromises);
-
-    // Filter stories that mention the topic (case insensitive)
-    return allStories
-      .filter(
-        (story) =>
-          story &&
-          story.title &&
-          story.title.toLowerCase().includes(topic.toLowerCase()),
-      )
-      .sort((a, b) => b.score - a.score) // Sort by score descending
-      .slice(0, 30); // Limit to 30 results
+    return parsed.hits.map((hit) => ({
+      id: parseInt(hit.objectID, 10),
+      title: hit.title,
+      url: hit.url,
+      score: hit.points,
+      by: hit.author,
+      time: hit.created_at_i,
+      descendants: hit.num_comments,
+    }));
   } catch (error) {
     console.error("Error fetching stories by topic:", error);
     return [];
@@ -80,7 +70,7 @@ export default function TopicPage({ params }: { params: { slug: string } }) {
     <div className="p-8">
       <div className="max-w-4xl">
         <h1 className="text-3xl font-bold text-gray-900 mb-8">
-          Stories about &#34;{topic}&#34;
+          &#34;{topic}&#34;: Top Stories of all time
         </h1>
         <Suspense fallback={<TopicStoryListSkeleton />}>
           <TopicStoryList topic={topic} />
