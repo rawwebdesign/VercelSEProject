@@ -5,6 +5,7 @@ import "./globals.css";
 import Navigation from "@/components/navigation";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import { get } from "@vercel/edge-config";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
   generator: "v0.dev",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -23,7 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="flex min-h-screen bg-gray-50">
-          <Navigation />
+          <Navigation copyrightYear={await get("copyrightYear")} />
           <main className="flex-1 ml-64">{children}</main>
           <SpeedInsights />
           <Analytics />

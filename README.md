@@ -8,6 +8,8 @@
 - Vercel Speed Insights
 - Vercel Analytics
 - Vercel Observability
+- Environment Variables
+- Edge Config
 
 ## Todos
 - The pages are no longer suspense when they are not ISR
