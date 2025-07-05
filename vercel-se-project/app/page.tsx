@@ -62,7 +62,9 @@ export default function HomePage() {
   return (
     <div className="p-8">
       <div className="max-w-4xl">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Top Stories</h1>
+        <h1 className="text-3xl font-bold text-gray-900 mb-8">
+          Current Top Stories
+        </h1>
         <Suspense fallback={<StoryListSkeleton />}>
           <StoryList />
         </Suspense>
