@@ -7,7 +7,9 @@ import { Story } from "@/lib/types";
 export const revalidate = 300;
 
 async function getTopStories(): Promise<Story[]> {
-  const baseURL = "https://hacker-news.firebaseio.com";
+  const baseURL =
+    process.env.HACKER_NEWS_FIREBASE_URL ||
+    "https://hacker-news.firebaseio.com";
   const version = "v0";
   try {
     // Get top story IDs

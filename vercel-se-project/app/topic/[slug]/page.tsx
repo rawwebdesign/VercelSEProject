@@ -15,8 +15,11 @@ export async function generateStaticParams() {
 
 async function getStoriesByTopic(topic: string): Promise<Story[]> {
   try {
+    const baseUrl =
+      process.env.HACKER_NEWS_ALGOLIA_BASE_URL || "https://hn.algolia.com";
+
     const response = await fetch(
-      `https://hn.algolia.com/api/v1/search?query=${topic}&tags=story`,
+      `${baseUrl}/api/v1/search?query=${topic}&tags=story`,
     );
     const json = await response.json();
     const parsed = AlgoliaSearchResultSchema.parse(json);
@@ -72,11 +75,7 @@ async function TopicResults({ topic }: { topic: string }) {
   );
 }
 
-export default function TopicPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default function TopicPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const topic = decodeURIComponent(slug);
 
