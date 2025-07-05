@@ -3,6 +3,7 @@ import StoryCard from "@/components/story-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Story } from "@/lib/types";
 import { popularTopics } from "@/lib/topics";
+import { AlgoliaSearchResultSchema } from "@/lib/validators";
 
 export const revalidate = 300;
 
@@ -11,7 +12,6 @@ export async function generateStaticParams() {
     slug: encodeURIComponent(topic),
   }));
 }
-import { AlgoliaSearchResultSchema } from "@/lib/validators";
 
 async function getStoriesByTopic(topic: string): Promise<Story[]> {
   try {
@@ -50,14 +50,14 @@ function TopicStoryListSkeleton() {
   );
 }
 
-async function TopicStoryList({ topic }: { topic: string }) {
+async function TopicResults({ topic }: { topic: string }) {
   const stories = await getStoriesByTopic(topic);
 
   if (stories.length === 0) {
     return (
       <div className="bg-white p-8 rounded-lg shadow-sm text-center">
         <p className="text-gray-500">
-          No stories found for &#34;{topic}&#34;. Try a different search term.
+          No stories found for &quot;{topic}&quot;. Try a different search term.
         </p>
       </div>
     );
@@ -72,22 +72,22 @@ async function TopicStoryList({ topic }: { topic: string }) {
   );
 }
 
-export default async function TopicPage({
+export default function TopicPage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const { slug } = await params;
+  const { slug } = params;
   const topic = decodeURIComponent(slug);
 
   return (
     <div className="p-8">
       <div className="max-w-4xl">
         <h1 className="text-3xl font-bold text-gray-900 mb-8">
-          &#34;{topic}&#34;: Top Stories of all time
+          &quot;{topic}&quot;: Top Stories of all time
         </h1>
         <Suspense fallback={<TopicStoryListSkeleton />}>
-          <TopicStoryList topic={topic} />
+          <TopicResults topic={topic} />
         </Suspense>
       </div>
     </div>

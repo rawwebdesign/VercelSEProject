@@ -10,10 +10,9 @@
 - Vercel Observability
 
 ## Todos
-- Deploy and test ISR on Vercel
+- The pages are no longer suspense when they are not ISR
 - Edge middleware / edge function
 - isBot on API Route
-- ISR Top 10 pages
 - Remove theming code
 - Use Edge Config
 - Use Env Vars
