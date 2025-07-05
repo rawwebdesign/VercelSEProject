@@ -9,7 +9,6 @@
 
 ## Todos
 - Eslint should run
-- Deployments are not happening on push
 - Deploy and test ISR on Vercel
 - Edge middleware / edge function
 - isBot on API Route
