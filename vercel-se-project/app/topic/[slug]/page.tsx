@@ -1,16 +1,7 @@
 import { Suspense } from "react";
 import StoryCard from "@/components/story-card";
 import { Skeleton } from "@/components/ui/skeleton";
-
-interface Story {
-  id: number;
-  title: string;
-  url?: string;
-  score: number;
-  by: string;
-  time: number;
-  descendants?: number;
-}
+import { Story } from "@/lib/types";
 
 async function getStoriesByTopic(topic: string): Promise<Story[]> {
   try {

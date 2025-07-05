@@ -1,15 +1,6 @@
 import Link from "next/link";
 import { ExternalLink, MessageCircle, User, Clock } from "lucide-react";
-
-interface Story {
-  id: number;
-  title: string;
-  url?: string;
-  score: number;
-  by: string;
-  time: number;
-  descendants?: number;
-}
+import { Story } from "@/lib/types";
 
 interface StoryCardProps {
   story: Story;

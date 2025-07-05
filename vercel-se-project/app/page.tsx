@@ -1,38 +1,31 @@
 import { Suspense } from "react";
 import StoryCard from "@/components/story-card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Story } from "@/lib/types";
 
-// ISR: Revalidate every hour (3600 seconds)
-export const revalidate = 3600;
-
-interface Story {
-  id: number;
-  title: string;
-  url?: string;
-  score: number;
-  by: string;
-  time: number;
-  descendants?: number;
-}
+// ISR: Revalidate every five minutes
+export const revalidate = 300;
 
 async function getTopStories(): Promise<Story[]> {
+  const baseURL = "https://hacker-news.firebaseio.com";
+  const version = "v0";
   try {
     // Get top story IDs
-    const topStoriesRes = await fetch(
-      "https://hacker-news.firebaseio.com/v0/topstories.json",
-    ); //TODO -> Move this into api route
-    const topStoryIds: number[] = await topStoriesRes.json();
+    const topStoriesResponse = await fetch(
+      `${baseURL}/${version}/topstories.json`,
+    );
+    const topStoryIds = await topStoriesResponse.json();
 
-    // Get first 30 stories
-    const storyPromises = topStoryIds.slice(0, 30).map(async (id) => {
-      const storyRes = await fetch(
-        `https://hacker-news.firebaseio.com/v0/item/${id}.json`,
-      ); //TODO -> Move this into api route
-      return storyRes.json();
+    // Get story details for the first 30 stories
+    const storyPromises = topStoryIds.slice(0, 30).map(async (id: number) => {
+      const storyResponse = await fetch(
+        `${baseURL}/${version}/item/${id}.json`,
+      );
+      return storyResponse.json();
     });
 
     const stories = await Promise.all(storyPromises);
-    return stories.filter((story) => story && story.title);
+    return stories.filter((story): story is Story => story !== null);
   } catch (error) {
     console.error("Error fetching stories:", error);
     return [];
