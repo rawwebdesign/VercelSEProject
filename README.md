@@ -6,6 +6,8 @@
 - Vercel Hosting
 - Vercel GitHub Integration
 - Vercel Speed Insights
+- Vercel Analytics
+- Vercel Observability
 
 ## Todos
 - Eslint should run

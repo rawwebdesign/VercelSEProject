@@ -31,7 +31,7 @@ async function getStoriesByTopic(topic: string): Promise<Story[]> {
     const allStories = await Promise.all(storyPromises);
 
     // Filter stories that mention the topic (case insensitive)
-    const filteredStories = allStories
+    return allStories
       .filter(
         (story) =>
           story &&
@@ -40,8 +40,6 @@ async function getStoriesByTopic(topic: string): Promise<Story[]> {
       )
       .sort((a, b) => b.score - a.score) // Sort by score descending
       .slice(0, 30); // Limit to 30 results
-
-    return filteredStories;
   } catch (error) {
     console.error("Error fetching stories by topic:", error);
     return [];
@@ -69,7 +67,7 @@ async function TopicStoryList({ topic }: { topic: string }) {
     return (
       <div className="bg-white p-8 rounded-lg shadow-sm text-center">
         <p className="text-gray-500">
-          No stories found for "{topic}". Try a different search term.
+          No stories found for &#34;{topic}&#34;. Try a different search term.
         </p>
       </div>
     );
@@ -91,7 +89,7 @@ export default function TopicPage({ params }: { params: { slug: string } }) {
     <div className="p-8">
       <div className="max-w-4xl">
         <h1 className="text-3xl font-bold text-gray-900 mb-8">
-          Stories about "{topic}"
+          Stories about &#34;{topic}&#34;
         </h1>
         <Suspense fallback={<TopicStoryListSkeleton />}>
           <TopicStoryList topic={topic} />
