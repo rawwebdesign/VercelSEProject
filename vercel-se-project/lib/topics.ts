@@ -1,0 +1,18 @@
+export const popularTopics = [
+  "Vercel",
+  "AI",
+  "React",
+  "JavaScript",
+  "Python",
+  "Machine Learning",
+  "Startup",
+  "Crypto",
+  "Web3",
+  "TypeScript",
+  "Next.js",
+  "Docker",
+  "Kubernetes",
+  "AWS",
+  "Security",
+  "Open Source",
+];
