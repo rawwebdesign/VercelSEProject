@@ -1,17 +1,25 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export default function middleware(request: NextRequest) {
-  // Extract city. Default to Unknown City if not found.
-  const city = (request.geo && request.geo.city) || "Unknown City";
+//TODO clean this up
 
-  // Clone the request headers and set a new header
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set("x-user-city", city);
+export default function middleware(request: NextRequest) {
+  const response = NextResponse.next();
+  const abTestVariant = request.cookies.get("ab-test-variant");
+
+  if (!abTestVariant) {
+    const variant = Math.random() < 0.5 ? "A" : "B"; // 50/50 split
+    response.cookies.set("ab-test-variant", variant);
+    if (variant === "A") {
+      request.headers.set("x-hn-results-limit", "10");
+    }
+  } else if (abTestVariant.value === "A") {
+    request.headers.set("x-hn-results-limit", "10");
+  }
 
   return NextResponse.next({
     request: {
-      headers: requestHeaders,
+      headers: request.headers,
     },
   });
 }

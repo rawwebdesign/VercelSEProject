@@ -17,6 +17,8 @@
 - isBot on API Route
 - Remove theming code
 - Remove unused code
+- Make the home page show 20 results also
+- Check for any remaining todos
 
 ## Check before complete
 - No eslint errors
