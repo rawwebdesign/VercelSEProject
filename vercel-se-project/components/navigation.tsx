@@ -70,7 +70,7 @@ export default function Navigation() {
       <div className="flex-grow">
         <div className="mb-8">
           <Link href="/" className="text-xl font-bold text-orange-600">
-            HN Reader
+            Vercel Reader
           </Link>
         </div>
 
