@@ -5,7 +5,7 @@ import "./globals.css";
 import Navigation from "@/components/navigation";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
-import { get } from "@vercel/edge-config";
+import Copyright from "@/components/Copyright";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,8 +24,12 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="flex min-h-screen bg-gray-50">
-          <Navigation copyrightYear={await get("copyrightYear")} />
-          <main className="flex-1 ml-64">{children}</main>
+          <Navigation />
+          <div className="flex-1 flex flex-col ml-64">
+            <main className="flex-1">{children}</main>
+            <Copyright />
+            {/*  TODO: The inclusion of the copyright above makes the stories appear to load in client-side*/}
+          </div>
           <SpeedInsights />
           <Analytics />
         </div>

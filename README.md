@@ -10,15 +10,12 @@
 - Vercel Observability
 - Environment Variables
 - Edge Config
+- Edge Middleware (redirects from /search={search term} to /topic/{search term})
 
 ## Todos
-- Fix this: The pages are no longer suspense when they are not ISR
-- Finish: Edge middleware / edge function
-- isBot on API Route
-- Remove theming code
 - Remove unused code
-- Make the home page show 20 results also
 - Check for any remaining todos
+- Copyright makes the stories seem to load on the client, although they are still actually ISR
 
 ## Check before complete
 - No eslint errors
