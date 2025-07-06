@@ -19,7 +19,7 @@
 
 ## Check before complete
 - No eslint errors
-- Verify ISR on Vercel - can do this with the build log
+- Verify ISR on Vercel 
 - Stream responses for non-static pages
 - Verify speed insights and ensure it works, Collect CWV
 - No errors during dev and navigation

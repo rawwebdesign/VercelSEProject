@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Search, TrendingUp } from "lucide-react";
 import { Input } from "@/components/ui/input";
-
 import { popularTopics } from "@/lib/topics";
 
 export default function Navigation() {
@@ -14,6 +13,37 @@ export default function Navigation() {
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const router = useRouter();
+
+  // Debounce function
+  const debounce = (func: Function, delay: number) => {
+    let timeout: NodeJS.Timeout;
+    return (...args: any[]) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func(...args), delay);
+    };
+  };
+
+  const fetchSuggestions = async (query: string) => {
+    if (query.length === 0) {
+      setSuggestions([]);
+      setShowSuggestions(false);
+      return;
+    }
+    try {
+      const response = await fetch(
+        `/api/autocomplete?query=${encodeURIComponent(query)}`,
+      );
+      const data = await response.json();
+      setSuggestions(data.suggestions);
+      setShowSuggestions(true);
+    } catch (error) {
+      console.error("Error fetching autocomplete suggestions:", error);
+      setSuggestions([]);
+      setShowSuggestions(false);
+    }
+  };
+
+  const debouncedFetchSuggestions = debounce(fetchSuggestions, 300);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,16 +56,7 @@ export default function Navigation() {
 
   const handleInputChange = (value: string) => {
     setSearchQuery(value);
-
-    if (value.length > 0) {
-      const filtered = popularTopics
-        .filter((topic) => topic.toLowerCase().includes(value.toLowerCase()))
-        .slice(0, 5);
-      setSuggestions(filtered);
-      setShowSuggestions(true);
-    } else {
-      setShowSuggestions(false);
-    }
+    debouncedFetchSuggestions(value);
   };
 
   const selectSuggestion = (suggestion: string) => {
