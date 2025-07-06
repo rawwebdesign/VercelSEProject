@@ -14,8 +14,6 @@
 
 ## Todos
 - Copyright makes the stories seem to load on the client, although they are still actually ISR
-- Remove unused code
-- Check for any remaining todos
 
 ## Check before complete
 - No eslint errors
@@ -23,6 +21,7 @@
 - Verify Stream responses for non-static pages
 - Verify speed insights and ensure it works, Collect CWV
 - No errors during dev and navigation
+- Check for any remaining todos
 
 ## Links
 - [Dashboard](https://vercel.com/rawwebdesigns-projects/vercel-se-project)
