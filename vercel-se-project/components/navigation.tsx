@@ -1,7 +1,6 @@
 "use client";
 
 import type React from "react";
-
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -12,8 +11,10 @@ import { popularTopics } from "@/lib/topics";
 
 export default function Navigation({
   copyrightYear,
+  userCityComponent,
 }: {
   copyrightYear: string | undefined;
+  userCityComponent: React.ReactNode;
 }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
@@ -112,6 +113,7 @@ export default function Navigation({
           </div>
         </div>
       </div>
+      <div className="text-xs text-gray-400 pb-5">{userCityComponent}</div>
       <div className="text-xs text-gray-400">
         <p>&copy; {copyrightYear || "2025"} Brad Spencer</p>
       </div>

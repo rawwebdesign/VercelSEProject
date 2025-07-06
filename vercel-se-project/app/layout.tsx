@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/navigation";
+import UserCity from "@/components/user-city";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import { get } from "@vercel/edge-config";
@@ -24,7 +25,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="flex min-h-screen bg-gray-50">
-          <Navigation copyrightYear={await get("copyrightYear")} />
+          <Navigation copyrightYear={await get("copyrightYear")} userCityComponent={<UserCity />} />
           <main className="flex-1 ml-64">{children}</main>
           <SpeedInsights />
           <Analytics />

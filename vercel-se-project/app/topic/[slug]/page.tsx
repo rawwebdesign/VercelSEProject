@@ -75,8 +75,12 @@ async function TopicResults({ topic }: { topic: string }) {
   );
 }
 
-export default function TopicPage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export default async function TopicPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
   const topic = decodeURIComponent(slug);
 
   return (
