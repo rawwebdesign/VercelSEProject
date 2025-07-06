@@ -27,7 +27,11 @@ export async function GET(request: Request) {
       }
     });
 
-    return NextResponse.json({ suggestions });
+    return NextResponse.json({ suggestions }, {
+      headers: {
+        'Cache-Control': 'public, max-age=31536000, s-maxage=31536000',
+      },
+    });
   } catch (error) {
     console.error("Error fetching autocomplete suggestions:", error);
     return NextResponse.json({ suggestions: [] }, { status: 500 });
