@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import { headers } from 'next/headers';
 import StoryCard from "@/components/story-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Story } from "@/lib/types";
@@ -8,9 +7,6 @@ import { Story } from "@/lib/types";
 export const revalidate = 300;
 
 async function getTopStories(): Promise<Story[]> {
-  const headersList = headers();
-  const resultsLimit = parseInt(headersList.get('x-hn-results-limit') || '30', 10);
-
   const baseURL =
     process.env.HACKER_NEWS_FIREBASE_URL ||
     "https://hacker-news.firebaseio.com";
@@ -22,8 +18,8 @@ async function getTopStories(): Promise<Story[]> {
     );
     const topStoryIds = await topStoriesResponse.json();
 
-    // Get story details for the first `resultsLimit` stories
-    const storyPromises = topStoryIds.slice(0, resultsLimit).map(async (id: number) => {
+    // Get story details for the first 30 stories
+    const storyPromises = topStoryIds.slice(0, 30).map(async (id: number) => {
       const storyResponse = await fetch(
         `${baseURL}/${version}/item/${id}.json`,
       );

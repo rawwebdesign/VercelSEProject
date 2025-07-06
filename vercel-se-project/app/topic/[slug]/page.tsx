@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import { headers } from "next/headers";
 import StoryCard from "@/components/story-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Story } from "@/lib/types";
@@ -15,12 +14,6 @@ export async function generateStaticParams() {
 }
 
 async function getStoriesByTopic(topic: string): Promise<Story[]> {
-  const headersList = await headers();
-  const resultsLimit = parseInt(
-    headersList.get("x-hn-results-limit") || "30",
-    10,
-  );
-
   try {
     const baseUrl =
       process.env.HACKER_NEWS_ALGOLIA_BASE_URL || "https://hn.algolia.com";
@@ -31,7 +24,7 @@ async function getStoriesByTopic(topic: string): Promise<Story[]> {
     const json = await response.json();
     const parsed = AlgoliaSearchResultSchema.parse(json);
 
-    return parsed.hits.slice(0, resultsLimit).map((hit) => ({
+    return parsed.hits.map((hit) => ({
       id: parseInt(hit.objectID, 10),
       title: hit.title,
       url: hit.url,
