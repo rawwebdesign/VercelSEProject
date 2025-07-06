@@ -15,11 +15,11 @@ export default function Navigation() {
   const router = useRouter();
 
   // Debounce function
-  const debounce = (func: Function, delay: number) => {
+  const debounce = (func: (query: string) => Promise<void>, delay: number) => {
     let timeout: NodeJS.Timeout;
-    return (...args: any[]) => {
+    return (arg: string) => {
       clearTimeout(timeout);
-      timeout = setTimeout(() => func(...args), delay);
+      timeout = setTimeout(() => func(arg), delay);
     };
   };
 
