@@ -2,10 +2,26 @@
 
 import Link from "next/link";
 import { TrendingUp } from "lucide-react";
-import { popularTopics } from "@/lib/topics";
 import SearchBar from "./search-bar";
+import { useEffect, useState } from "react";
 
 export default function Navigation() {
+  const [popularTopics, setPopularTopics] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchPopularTopics = async () => {
+      try {
+        const response = await fetch("/api/popular-topics");
+        const data = await response.json();
+        setPopularTopics(data);
+      } catch (error) {
+        console.error("Error fetching popular topics:", error);
+      }
+    };
+
+    void fetchPopularTopics();
+  }, []);
+
   return (
     <nav className="fixed left-0 top-0 h-full w-64 bg-white border-r border-gray-200 p-6 flex flex-col">
       <div className="flex-grow">

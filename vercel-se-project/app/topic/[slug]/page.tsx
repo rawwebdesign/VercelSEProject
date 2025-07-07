@@ -2,13 +2,15 @@ import { Suspense } from "react";
 import StoryCard from "@/components/story-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Story } from "@/lib/types";
-import { popularTopics } from "@/lib/topics";
-import { AlgoliaSearchResultSchema } from "@/lib/validators";
+import { AlgoliaSearchResultSchema, PopularTopics } from "@/lib/validators";
+import { get } from "@vercel/edge-config";
 
 export const revalidate = 300;
 
 export async function generateStaticParams() {
-  return popularTopics.map((topic) => ({
+  const popularTopics = await get("popularTopics");
+  const parsed = PopularTopics.parse(popularTopics);
+  return parsed.map((topic) => ({
     slug: encodeURIComponent(topic),
   }));
 }

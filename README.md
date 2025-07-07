@@ -9,11 +9,11 @@
 - Vercel Analytics
 - Vercel Observability
 - Environment Variables
-- Edge Config
+- Edge Config (popular topics)
 - Edge Middleware (redirects from /search={search term} to /topic/{search term})
 
 ## Todos
-- Copyright makes the stories seem to load on the client, although they are still actually ISR
+- Use edge config
 
 ## Check before complete
 - No eslint errors

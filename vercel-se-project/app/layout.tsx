@@ -5,7 +5,6 @@ import "./globals.css";
 import Navigation from "@/components/navigation";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
-import Copyright from "@/components/Copyright";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,7 +26,6 @@ export default async function RootLayout({
           <Navigation />
           <div className="flex-1 flex flex-col ml-64">
             <main className="flex-1">{children}</main>
-            <Copyright />
           </div>
           <SpeedInsights />
           <Analytics />
