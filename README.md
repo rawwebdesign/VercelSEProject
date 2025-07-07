@@ -1,27 +1,19 @@
-# VercelSEProject
+# Vercel SE Project
  
 ## Vercel Products & Features Used
 - v0: Created a foundation for the site
 - Vercel Build
 - Vercel Hosting
 - Vercel GitHub Integration
-- Vercel Speed Insights
+- [Vercel Speed Insights](https://vercel.com/rawwebdesigns-projects/vercel-se-project/speed-insights)
 - Vercel Analytics
 - Vercel Observability
 - Environment Variables
 - Edge Config (popular topics)
 - Edge Middleware (redirects from /search={search term} to /topic/{search term})
 
-## Todos
-- Use edge config
-
-## Check before complete
-- No eslint errors
-- Verify ISR on Vercel 
-- Verify Stream responses for non-static pages
-- Verify speed insights and ensure it works, Collect CWV
-- No errors during dev and navigation
-- Check for any remaining todos
+## TODO
+- Stream responses for non-static pages
 
 ## Links
 - [Dashboard](https://vercel.com/rawwebdesigns-projects/vercel-se-project)
