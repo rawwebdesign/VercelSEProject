@@ -4,9 +4,11 @@ import Link from "next/link";
 import { TrendingUp } from "lucide-react";
 import SearchBar from "./search-bar";
 import { useEffect, useState } from "react";
+import PopularTopicsSkeleton from "./popular-topics-skeleton";
 
 export default function Navigation() {
   const [popularTopics, setPopularTopics] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPopularTopics = async () => {
@@ -16,6 +18,8 @@ export default function Navigation() {
         setPopularTopics(data);
       } catch (error) {
         console.error("Error fetching popular topics:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -40,17 +44,21 @@ export default function Navigation() {
             <TrendingUp className="h-4 w-4 text-gray-500 mr-2" />
             <h3 className="font-semibold text-gray-700">Popular Topics</h3>
           </div>
-          <div className="space-y-2">
-            {popularTopics.map((topic) => (
-              <Link
-                key={topic}
-                href={`/topic/${encodeURIComponent(topic)}`}
-                className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded-md transition-colors"
-              >
-                {topic}
-              </Link>
-            ))}
-          </div>
+          {loading ? (
+            <PopularTopicsSkeleton />
+          ) : (
+            <div className="space-y-2">
+              {popularTopics.map((topic) => (
+                <Link
+                  key={topic}
+                  href={`/topic/${encodeURIComponent(topic)}`}
+                  className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded-md transition-colors"
+                >
+                  {topic}
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </nav>
