@@ -28,7 +28,6 @@ export default async function RootLayout({
           <div className="flex-1 flex flex-col ml-64">
             <main className="flex-1">{children}</main>
             <Copyright />
-            {/*  TODO: The inclusion of the copyright above makes the stories appear to load in client-side*/}
           </div>
           <SpeedInsights />
           <Analytics />
