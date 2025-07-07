@@ -9,12 +9,12 @@
 - Vercel Analytics
 - Vercel Observability
 - Environment Variables
-- Edge Config (popular topics)
-- Edge Middleware (redirects from /search={search term} to /topic/{search term})
-
-## TODO
-- Stream responses for non-static pages
+  - Base URLs for the APIs called
+- Edge Config
+  - Popular topics in the sidebar
+- Edge Middleware
+  - redirects from /search={search term} to /topic/{search term}
 
 ## Links
 - [Dashboard](https://vercel.com/rawwebdesigns-projects/vercel-se-project)
-- [Publicly Accessible](https://vercel-se-project.vercel.app/)
+- [Publicly Accessible URL](https://vercel-se-project.vercel.app/)
