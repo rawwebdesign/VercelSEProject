@@ -1,12 +1,14 @@
-"use client";
-
 import type React from "react";
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
-export default function SearchBar() {
+export default function SearchBar({
+  onSearch,
+}: {
+  onSearch: (query: string) => void;
+}) {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -48,6 +50,7 @@ export default function SearchBar() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
+      onSearch(searchQuery.trim());
       router.push(`/topic/${encodeURIComponent(searchQuery.trim())}`);
       setSearchQuery("");
       setSuggestions([]);
@@ -92,6 +95,7 @@ export default function SearchBar() {
 
   const selectSuggestion = (suggestion: string) => {
     setSearchQuery(suggestion);
+    onSearch(suggestion);
     setShowSuggestions(false);
     setSuggestions([]);
     setFocusedSuggestionIndex(-1);
